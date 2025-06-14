@@ -1,35 +1,4 @@
-const products =[{
-    image:'images/products/athletic-cotton-socks-6-pairs.jpg',
-    name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
-    Rating:{
-        stars:4.5,
-        count:87
-    },
-    priceCent:1090,
-    
-},{
-    image:'images/products/intermediate-composite-basketball.jpg',
-    name: 'Intermediate Size Basketball',
-    Rating:{
-        stars:4,
-        count:127
-    },
-    priceCent:2095,
-    
 
-
-
-},{
-    image:'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
-    name: 'Adults Plain Cotton T-Shirt - 2 Pack',
-    Rating:{
-        stars:5,
-        count:56
-    },
-    priceCent:799,
-    
-
-}];
 
 let html = '';
 
@@ -47,14 +16,14 @@ products.forEach((product)=>{
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-45.png">
+              src="images/ratings/rating-${product.rating.stars*10}.png">
             <div class="product-rating-count link-primary">
-              ${product.Rating.count}
+              ${product.rating.count}
             </div>
           </div>
 
           <div class="product-price">
-            ${(product.priceCent /100).toFixed(2)}
+            ${(product.priceCents /100).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
@@ -79,7 +48,8 @@ products.forEach((product)=>{
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-cart"
+          data-product-id ="${product.id}">
             Add to Cart
           </button>
         </div>`;
@@ -95,6 +65,53 @@ products.forEach((product)=>{
 
 
 document.querySelector('.js-product-grid').innerHTML = html;
+
+document.querySelectorAll('.js-cart').
+forEach((buttons)=>{
+  buttons.addEventListener('click',()=>{
+    console.log(buttons.dataset.productName);
+    let Product_Id = buttons.dataset.productId;
+    let CartQuantity = 0;
+    let matches;
+
+    cart.forEach((items)=>{
+      if(Product_Id===items.ProductID){
+        matches =items;
+      }
+    });
+
+    if(matches){
+      matches.Quantity+=1;
+      
+
+    }
+    
+    else{
+      cart.push({
+      ProductID:Product_Id,
+      Quantity:1
+      
+    });
+ 
+  }
+  
+  
+    cart.forEach((Item)=>{
+      let quanti = Item.Quantity;
+      CartQuantity += quanti;
+ 
+    });
+    
+    console.log(cart);  
+    document.querySelector('.cart-quantity').innerHTML = CartQuantity;
+   
+  });
+  
+  
+})
+ 
+
+
 
 
 
