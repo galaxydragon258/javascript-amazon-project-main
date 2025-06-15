@@ -27,7 +27,7 @@ products.forEach((product)=>{
           </div>
 
           <div class="product-quantity-container">
-            <select class= "js-quantity-${product.id}">
+            <select class = "mySelector">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -57,8 +57,6 @@ products.forEach((product)=>{
         html += accum;
 });
 
-let accumulator;
-let quantity;
 
 
 document.querySelector('.js-product-grid').innerHTML = html;
@@ -66,14 +64,10 @@ document.querySelector('.js-product-grid').innerHTML = html;
 document.querySelectorAll('.js-cart').
 forEach((buttons)=>{
   buttons.addEventListener('click',()=>{
+    console.log(buttons.dataset.productName);
     let Product_Id = buttons.dataset.productId;
     let CartQuantity = 0;
     let matches;
-    
-    const QuantityElement = document.querySelector(`.js-quantity-${Product_Id}`);
-    const Quantity_Selector = Number(QuantityElement.value);
-    
-    
 
     cart.forEach((items)=>{
       if(Product_Id===items.ProductID){
@@ -93,9 +87,6 @@ forEach((buttons)=>{
       Quantity:1
       
     });
-
-   
-
  
   }
   
@@ -103,15 +94,14 @@ forEach((buttons)=>{
     cart.forEach((Item)=>{
       let quanti = Item.Quantity;
       CartQuantity += quanti;
+ 
     });
-
     
-    console.log(Quantity_Selector);
     console.log(cart);  
     document.querySelector('.cart-quantity').innerHTML = CartQuantity;
    
-   
-    });//end of event listener  
+  });
+  
   
 })
  
