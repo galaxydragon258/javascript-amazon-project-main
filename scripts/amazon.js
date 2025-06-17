@@ -1,4 +1,5 @@
-
+import {cart} from "../data/cart.js"
+import{products}from "../data/products.js"
 
 let html = '';
 
@@ -43,7 +44,7 @@ products.forEach((product)=>{
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart added${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -59,6 +60,8 @@ products.forEach((product)=>{
 
 let accumulator;
 let quantity;
+let ID;
+
 
 
 document.querySelector('.js-product-grid').innerHTML = html;
@@ -70,9 +73,10 @@ forEach((buttons)=>{
     let CartQuantity = 0;
     let matches;
     
+    
     const QuantityElement = document.querySelector(`.js-quantity-${Product_Id}`);
     const Quantity_Selector = Number(QuantityElement.value);
-    
+    const ButtonMark = document.querySelector(`.added${Product_Id}`);
     
 
     cart.forEach((items)=>{
@@ -94,8 +98,6 @@ forEach((buttons)=>{
       
     });
 
-   
-
  
   }
   
@@ -109,6 +111,32 @@ forEach((buttons)=>{
     console.log(Quantity_Selector);
     console.log(cart);  
     document.querySelector('.cart-quantity').innerHTML = CartQuantity;
+
+ 
+    
+    ButtonMark.classList.add('visible');
+    
+    refrehs();
+
+     ID = setTimeout(()=>{
+       ButtonMark.classList.remove('visible')
+  
+    },2000)
+
+    function refrehs(){
+      clearTimeout(ID);
+    }
+
+   
+
+
+
+  
+  
+    
+      
+
+
    
    
     });//end of event listener  
