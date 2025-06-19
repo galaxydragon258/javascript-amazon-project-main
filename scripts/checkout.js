@@ -1,4 +1,4 @@
-import { cart } from "../data/cart.js";
+import { cart, Delete} from "../data/cart.js";
 import { products} from "../data/products.js";
 
 let hmtl = '';
@@ -38,7 +38,8 @@ cart.forEach((cartItem)=>{
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary delBut"
+                  data-product-id="${matchingItem.id}">
                     Delete
                   </span>
                 </div>
@@ -93,7 +94,19 @@ cart.forEach((cartItem)=>{
 
 })
 
-console.log(hmtl);
 
 
 document.querySelector('.hi').innerHTML = hmtl;
+document.querySelectorAll('.delBut').
+forEach((DelButton)=>{
+  DelButton.addEventListener('click',()=>{
+    let DelbutId = DelButton.dataset.productId
+    Delete(DelbutId);
+    console.log(cart);
+    
+    
+ 
+    
+    
+  })
+});

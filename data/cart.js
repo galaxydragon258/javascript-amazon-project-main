@@ -9,4 +9,17 @@ export let cart = [{
 }
 ];
 
+export function Delete(CARTID){
+    let newCART = [];
+    cart.forEach((cartItems)=>{
+        if(cartItems.ProductID !== CARTID){
+            newCART.push(cartItems);
+
+        }
+    })
+    cart = newCART;
+ 
+
+}
+
 
