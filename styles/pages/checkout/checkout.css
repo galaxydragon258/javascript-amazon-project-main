@@ -209,3 +209,30 @@
   margin-top: 11px;
   margin-bottom: 15px;
 }
+
+.quantityInput{
+  width: 25px;
+}
+.quantityInput,
+.save{
+  cursor: pointer;
+  display: none;
+
+}
+
+.editing .quantityInput,
+.editing .save{
+  display: initial;
+}
+.editing .updateLink,
+.editing .quantityLabel{
+  display: none;
+}
+
+
+
+
+
+
+
+

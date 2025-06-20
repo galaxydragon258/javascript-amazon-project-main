@@ -1,4 +1,4 @@
-import {cart} from "../data/cart.js"
+import {cart,SavedLocalStorage,update} from "../data/cart.js"
 import{products}from "../data/products.js"
 
 let html = '';
@@ -62,8 +62,6 @@ let accumulator;
 let quantity;
 let ID;
 
-
-
 document.querySelector('.js-product-grid').innerHTML = html;
 
 document.querySelectorAll('.js-cart').
@@ -81,14 +79,13 @@ forEach((buttons)=>{
 
     cart.forEach((items)=>{
       if(Product_Id===items.ProductID){
-        matches =items;
+        matches = items;
       }
     });
 
     if(matches){
       matches.Quantity+=1;
-      
-
+    
     }
     
     else{
@@ -97,6 +94,7 @@ forEach((buttons)=>{
       Quantity:1
       
     });
+    
 
  
   }
@@ -110,6 +108,7 @@ forEach((buttons)=>{
     
     console.log(Quantity_Selector);
     console.log(cart);  
+
     document.querySelector('.cart-quantity').innerHTML = CartQuantity;
 
  
@@ -125,15 +124,12 @@ forEach((buttons)=>{
 
     function refrehs(){
       clearTimeout(ID);
+      
     }
-
+    update();
+    SavedLocalStorage();
+  
    
-
-
-
-  
-  
-    
       
 
 
@@ -142,7 +138,8 @@ forEach((buttons)=>{
     });//end of event listener  
   
 })
- 
+
+update();
 
 
 
