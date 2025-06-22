@@ -138,14 +138,16 @@
   })
 
 document.querySelectorAll('.save').forEach((SaveBut) => {
+    const id = SaveBut.dataset.saveid
+    const input = document.querySelector(`.quantityinput${id}`);
+    const label = document.querySelector(`.quantityLabel${id}`);
+
   SaveBut.addEventListener('click', () => {
     const id = SaveBut.dataset.saveid;
     const container = document.querySelector(`.js-container${id}`);
     container.classList.remove('editing');
 
-    const input = document.querySelector(`.quantityinput${id}`);
-    const label = document.querySelector(`.quantityLabel${id}`);
-
+    
     const totalQuanty = Number(input.value);
 
     const newQuantity = updateQuantity(id,totalQuanty);
@@ -159,7 +161,17 @@ document.querySelectorAll('.save').forEach((SaveBut) => {
 
     input.value = '';
   });
+
+    input.addEventListener('keydown',(event)=>{
+    if(event.key === 'Enter'){
+      SaveBut.click();
+      
+    }
+  });
 });
+
+
+  
 
 
 
