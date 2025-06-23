@@ -1,13 +1,17 @@
-  import { cart, Delete,SavedLocalStorage,update, updateQuantity} from "../data/cart.js";
+  import { cart, Delete,SavedLocalStorage,update, updateQuantity,updateDeliveryTime} from "../data/cart.js";
   import { products} from "../data/products.js";
   import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
   import { DeliverOption } from "./DeliveryOptions.js";
+ 
+
+
+  function renderOrderedItems(){
   let hmtl = '';
   cart.forEach((cartItem)=>{
       const cartId = cartItem.ProductID;
       const deiveryId = cartItem.DeliveryId;
       let matchingItem
-      let Date;
+      let deliveryDate;
       products.forEach((product)=>{
           if(product.id === cartId){{
               matchingItem = product
@@ -17,14 +21,16 @@
 
       DeliverOption.forEach((options)=>{
         if(deiveryId === options.id){
-          Date = options;
+          deliveryDate = options;
+          console.log('working')
         }
       })
 
       let today = dayjs();
-      const AddDate = today.add(Date.date, 'days');
-      const format = AddDate.format('dddd, MMMM   D');
-      console.log(format);
+      let added= today.add(deliveryDate.date , "days");
+      let format = added.format("dddd, MMMM D")
+      
+      
 
 
 
@@ -165,10 +171,15 @@ document.querySelectorAll('.save').forEach((SaveBut) => {
         "FREE Shipping":`${options.priceCents/100} - Shipping`;
 
         let isChecked = options.id === deiveryId ? "checked":"";
+        
+        
       
 
     html += `
-              <div class="delivery-option">
+              <div class="delivery-option radioButtons"
+              data-productid = "${matchingItem.id}"
+              data-deliveryid = "${options.id}"
+              >
               <input type="radio" 
                 ${isChecked}
                 class="delivery-option-input"
@@ -188,11 +199,22 @@ document.querySelectorAll('.save').forEach((SaveBut) => {
 
   }
 
+  document.querySelectorAll('.radioButtons').
+  forEach((radio)=>{
+    const {productid,deliveryid} = radio.dataset;
+    radio.addEventListener('click',()=>{
+      updateDeliveryTime(productid,deliveryid);
+      renderOrderedItems();
+      
+      
+    })
+    
+
+    
+  })
+
 
   
-
-
-
-
-  update(); 
-
+  }
+  renderOrderedItems();
+update(); 
