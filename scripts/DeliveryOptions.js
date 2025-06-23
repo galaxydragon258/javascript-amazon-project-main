@@ -1,7 +1,7 @@
 export let DeliverOption =[{
 
     id:'1',
-    date:1,
+    date:7,
     priceCents:0,
 
 

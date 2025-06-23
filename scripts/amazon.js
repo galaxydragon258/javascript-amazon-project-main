@@ -60,12 +60,13 @@ products.forEach((product)=>{
 
 let accumulator;
 let quantity;
-let ID;
+
 
 document.querySelector('.js-product-grid').innerHTML = html;
 
 document.querySelectorAll('.js-cart').
 forEach((buttons)=>{
+  let ID;
   buttons.addEventListener('click',()=>{
     let Product_Id = buttons.dataset.productId;
     let CartQuantity = 0;
@@ -92,6 +93,7 @@ forEach((buttons)=>{
       cart.push({
       ProductID:Product_Id,
       Quantity:1,
+      DeliveryId:'1'
       
       
     });
@@ -141,6 +143,7 @@ forEach((buttons)=>{
 })
 
 update();
+    SavedLocalStorage();
 
 
 

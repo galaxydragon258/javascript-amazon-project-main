@@ -1,3 +1,4 @@
+import { SavedLocalStorage,cart } from "../data/cart.js";
 
 
 let html = '';
@@ -77,6 +78,7 @@ forEach((buttons)=>{
 
     if(matches){
       matches.Quantity+=1;
+    
       
 
     }
@@ -84,11 +86,15 @@ forEach((buttons)=>{
     else{
       cart.push({
       ProductID:Product_Id,
-      Quantity:1
+      Quantity:1,
+      DeliveryId:'1'
       
     });
  
   }
+  console.log('hi');
+
+  console.log(matches.DeliveryId);
   
   
     cart.forEach((Item)=>{
@@ -99,11 +105,13 @@ forEach((buttons)=>{
     
     console.log(cart);  
     document.querySelector('.cart-quantity').innerHTML = CartQuantity;
+    SavedLocalStorage();
    
   });
   
   
 })
+
  
 
 

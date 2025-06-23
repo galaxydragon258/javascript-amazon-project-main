@@ -1,16 +1,20 @@
+import { products} from "../data/products.js";
+import { DeliverOption } from "../scripts/DeliveryOptions.js";
+
+
 export let cart =  JSON.parse(localStorage.getItem('Cart'))
 
 if(!cart){
     cart =
 [{
     ProductID: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    Quantity:0,
+    Quantity:1,
     DeliveryId:'1'
 },
 {
 
     ProductID: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-    Quantity:2,
+    Quantity:1,
     DeliveryId:'2'
 
 }
@@ -60,6 +64,7 @@ let i = document.querySelector('.test').innerHTML = Quanti
 
 
 }
+
 export function updateQuantity(productId, addedQuantity) {
  
     for(let item of cart){
@@ -87,6 +92,34 @@ export function updateDeliveryTime(ProductId,DeliveryId){
     });
     matching.DeliveryId = DeliveryId;
   SavedLocalStorage();
+
+}
+
+
+export function fun(cartId){
+    let matchingItem
+    products.forEach((product)=>{
+        if(product.id === cartId){{
+            matchingItem = product;
+            
+
+        }}
+    })
+
+    return matchingItem;
+
+};
+
+export function DeliverIdMatcher(deiveryId){
+    let deliveryDate;
+
+    DeliverOption.forEach((options)=>{
+        if(deiveryId === options.id){
+            deliveryDate = options;
+            console.log('working')
+        }
+        })
+        return deliveryDate;
 
 }
 
