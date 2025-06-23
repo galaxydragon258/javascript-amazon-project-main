@@ -4,17 +4,28 @@ if(!cart){
     cart =
 [{
     ProductID: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    Quantity:0
-},{
+    Quantity:0,
+    DeliveryId:2
+},
+{
 
     ProductID: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-    Quantity:2
+    Quantity:2,
+    DeliveryId:1
 
 }
 ];
-
-}
 SavedLocalStorage();
+
+};
+
+export function testing(){
+    cart.forEach((testing)=>{
+    const id = testing.Quantity;
+    console.log(id);
+    })
+}
+
 
 export function Delete(CARTID){
     let newCART = [];
@@ -57,7 +68,8 @@ export function updateQuantity(productId, addedQuantity) {
             SavedLocalStorage();
             return {
                 id:item.ProductID,
-                quantity:item.Quantity
+                quantity:item.Quantity,
+                
             }
             
         }

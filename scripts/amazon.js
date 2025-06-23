@@ -91,7 +91,8 @@ forEach((buttons)=>{
     else{
       cart.push({
       ProductID:Product_Id,
-      Quantity:1
+      Quantity:1,
+      DeliveryId:1
       
     });
     
