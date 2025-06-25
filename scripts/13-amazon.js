@@ -79,8 +79,6 @@ forEach((buttons)=>{
     if(matches){
       matches.Quantity+=1;
     
-      
-
     }
     
     else{
@@ -92,9 +90,9 @@ forEach((buttons)=>{
     });
  
   }
-  console.log('hi');
+    console.log('hi');
 
-  console.log(matches.DeliveryId);
+    console.log(matches.DeliveryId);
   
   
     cart.forEach((Item)=>{

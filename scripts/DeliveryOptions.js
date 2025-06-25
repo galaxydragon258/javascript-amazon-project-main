@@ -39,7 +39,7 @@
             if(format === 'Saturday'){
                 added = added.add(2,'days');
             }
-            console.log('');
+            
             return added.format("dddd,MMMM D");
             
 

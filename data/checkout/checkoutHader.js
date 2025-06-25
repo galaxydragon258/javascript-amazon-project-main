@@ -5,7 +5,7 @@ export function renderChecout(){
     let totalQuantity = 0;
     cart.forEach((items)=>{{
         totalQuantity += items.Quantity;
-        console.log(totalQuantity);
+        
 
 
 

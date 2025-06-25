@@ -110,7 +110,6 @@ export function DeliverIdMatcher(deiveryId){
     DeliverOption.forEach((options)=>{
         if(deiveryId === options.id){
             deliveryDate = options;
-            console.log('working')
         }
         })
         return deliveryDate;

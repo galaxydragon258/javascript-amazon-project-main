@@ -22,7 +22,6 @@
 
       let format =  calculateDeliveryDate(deliveryDate);
 
-      console.log(deliveryDate);
 
 
 
@@ -169,7 +168,7 @@ document.querySelectorAll('.save').forEach((SaveBut) => {
 
         let isChecked = options.id === deiveryId ? "checked":"";
 
-        console.log(formatDate);
+        
         
         
       
