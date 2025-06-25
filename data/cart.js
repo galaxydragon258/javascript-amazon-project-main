@@ -54,13 +54,7 @@ export function SavedLocalStorage(){
 
 export function update(){
 
-let TotalCart = 0
-update.TotalCart = TotalCart;
-cart.forEach((Items)=>{
-TotalCart += Items.Quantity;
-});
-let Quanti =`${TotalCart}`;
-let i = document.querySelector('.test').innerHTML = Quanti
+
 
 
 }

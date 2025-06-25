@@ -1,8 +1,11 @@
   import { cart, Delete,SavedLocalStorage,update, updateQuantity,updateDeliveryTime,fun,DeliverIdMatcher} from "../cart.js";
   import { products} from "../products.js";
   import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-  import { DeliverOption } from "../../scripts/DeliveryOptions.js";
+  import { DeliverOption,calculateDeliveryDate } from "../../scripts/DeliveryOptions.js";
   import {PaymentSummary} from "./PaymentSum.js";
+  import {renderChecout}from "./checkoutHader.js";
+  
+
  
 
 
@@ -13,16 +16,18 @@
       const deiveryId = cartItem.DeliveryId;
       
 
-      let matchingItem = fun(cartId)
+      let matchingItem = fun(cartId)//function
 
-     let deliveryDate = DeliverIdMatcher(deiveryId);
+      let deliveryDate = DeliverIdMatcher(deiveryId);//function
 
-      let today = dayjs();
-      let added= today.add(deliveryDate.date , "days");
-      let format = added.format("dddd, MMMM D")
+      let format =  calculateDeliveryDate(deliveryDate);
+
+      console.log(deliveryDate);
+
+
+
       
       
-
 
 
 
@@ -66,7 +71,7 @@
                     Choose a delivery option:
                   </div>
                   
-                 ${DeliveryOp(matchingItem,deiveryId)}  
+                 ${DeliveryOp(matchingItem,deiveryId)} 
                 
                 </div>
               </div>
@@ -88,8 +93,8 @@
       console.log(cart);
       let button = document.querySelector(`.js-container${DelbutId}`);
       let input = document.querySelector(`.quantityinput${DelbutId}`)
-      button.remove();
-      update()
+      renderChecout();
+      renderOrderedItems();
       PaymentSummary();;
       SavedLocalStorage();
       
@@ -99,12 +104,11 @@
 
   document.querySelectorAll('.updateLink').
   forEach((Update)=>{
-    Update.addEventListener('click',()=>{
+    Update.addEventListener('click',()=>{ 
       let ProductId = Update.dataset.productId;
       const container = document.querySelector(`.js-container${ProductId}`);
-      const up = document.querySelector('.updateLink');
       container.classList.add('editing');
-      update();
+      
       PaymentSummary();
       SavedLocalStorage();
     
@@ -133,7 +137,7 @@ document.querySelectorAll('.save').forEach((SaveBut) => {
     console.log(newQuantity.quantity);
     console.log(newQuantity.id);
      PaymentSummary();
-    update(); 
+    renderChecout(); 
     SavedLocalStorage();
 
     input.value = '';
@@ -157,14 +161,15 @@ document.querySelectorAll('.save').forEach((SaveBut) => {
     
       DeliverOption.forEach((options)=>{
 
-        let Aded = days.add(options.date, 'days');
-        let formatDate = Aded.format("dddd, MMMM D");
+        let formatDate = calculateDeliveryDate(options);
         
 
         let Pricing  = options.priceCents === 0?
         "FREE Shipping":`${options.priceCents/100} - Shipping`;
 
         let isChecked = options.id === deiveryId ? "checked":"";
+
+        console.log(formatDate);
         
         
       
@@ -212,3 +217,6 @@ update();
   
   }
   renderOrderedItems();
+
+
+

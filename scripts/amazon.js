@@ -1,6 +1,7 @@
 import {cart,SavedLocalStorage,update} from "../data/cart.js"
 import{products}from "../data/products.js"
-
+import {renderChecout} from "../data/checkout/checkoutHader.js";
+import { amazonQuantiy } from "../data/checkout/checkoutHader.js";
 let html = '';
 
 
@@ -142,8 +143,8 @@ forEach((buttons)=>{
   
 })
 
-update();
-    SavedLocalStorage();
+amazonQuantiy();
+SavedLocalStorage();
 
 
 

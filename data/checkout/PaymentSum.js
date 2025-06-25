@@ -1,5 +1,6 @@
 import {cart,fun,DeliverIdMatcher} from "../cart.js"
 import { Dollors } from "../../scripts/moenyConverte.js";
+ import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 export function PaymentSummary(){
     let matchingItem
     let totalPriceQuantity = 0;
@@ -8,6 +9,7 @@ export function PaymentSummary(){
     let estimatedTax =0;
     let html = "";
     let total = totalPriceQuantity +totalShipping + estimatedTax;
+    let Quantity =0;
     
 
   cart.forEach((items)=>{
@@ -25,6 +27,7 @@ export function PaymentSummary(){
 
     estimatedTax = PriceBeforeTax * 0.10;
     total = totalPriceQuantity +totalShipping + estimatedTax;
+    Quantity += items.Quantity;
     
     
   });
@@ -35,7 +38,7 @@ export function PaymentSummary(){
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div>Items (${Quantity}):</div>
             <div class="payment-summary-money">$${Dollors(totalPriceQuantity)}</div>
           </div>
 
@@ -68,3 +71,4 @@ export function PaymentSummary(){
   
   
 }
+
