@@ -1,8 +1,8 @@
 
     class Cart{
-        cartItems;
-        StorageName;
-
+      cartItems;
+  
+      StorageName;
 
         constructor(StorageName){
             this.StorageName = StorageName;
@@ -40,7 +40,7 @@
         };
 
 
-         testing(){
+        testing(){
         this.cartItems.forEach((testing)=>{
         const id = testing.Quantity;
         console.log(id);

@@ -1,3 +1,38 @@
+
+import { Dollors } from "../scripts/moenyConverte.js";
+
+
+  class Product{  
+    id;
+    image;
+    name;
+    rating;
+    priceCents;
+
+    constructor(ProductDetails){
+      this.id = ProductDetails.id;
+      this.image = ProductDetails.image;
+      this.name = ProductDetails.name;
+      this.rating = ProductDetails.rating;
+      this.priceCents = ProductDetails.priceCents;  
+
+      
+    }
+
+     getUrl(){
+      return `images/ratings/rating-${this.rating.stars*10}.png`
+     }
+     getPriceCalcu(){
+
+      return `$${Dollors(this.priceCents)}`
+
+      
+     }
+
+    
+  }
+
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -666,4 +701,11 @@ export const products = [
     },
     priceCents:1000,
   }
-];
+].map((ProductDetails)=>{
+      return new Product(ProductDetails);
+
+})
+
+
+
+
