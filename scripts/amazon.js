@@ -2,10 +2,17 @@ import {cart,SavedLocalStorage,update} from "../data/cart.js"
 import{products}from "../data/products.js"
 import {renderChecout} from "../data/checkout/checkoutHader.js";
 import { amazonQuantiy } from "../data/checkout/checkoutHader.js";
+import {productss} from '../data/product-backend.js';
 let html = '';
 
 
-products.forEach((product)=>{
+
+
+
+export function renderGrid(){ 
+  console.log('RENDER GOOD')
+
+productss.forEach((product)=>{
      let accum = `<div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -155,7 +162,7 @@ amazonQuantiy();
 SavedLocalStorage();
 
 
-
+}
 
 
 

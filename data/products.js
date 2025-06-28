@@ -1,4 +1,4 @@
-
+import '../data/product-backend.js';
 import { Dollors } from "../scripts/moenyConverte.js";
 
 
@@ -83,6 +83,7 @@ import { Dollors } from "../scripts/moenyConverte.js";
     }
 
   }
+  
 
 
 export const products = [
