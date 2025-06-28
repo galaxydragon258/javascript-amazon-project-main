@@ -43,12 +43,20 @@ products.forEach((product)=>{
             </select>
           </div>
 
+          ${product.getWarrant()}
+          ${product.getInstruct()}
+          ${product.getsize()}
+
+
+
           <div class="product-spacer"></div>
 
           <div class="added-to-cart added${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
+
+          
 
           <button class="add-to-cart-button button-primary js-cart"
           data-product-id ="${product.id}">

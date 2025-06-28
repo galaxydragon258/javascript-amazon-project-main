@@ -28,8 +28,60 @@ import { Dollors } from "../scripts/moenyConverte.js";
 
       
      }
+     getWarrant(){
+      return '';
+
+    }
+    getInstruct(){
+    return ''
+  }
+
+  
+    getsize(){
+      return ''
+
+    }
 
     
+  }
+
+  class Appliances extends Product{
+    instruction;
+    warrant;
+
+    constructor(ProductDetails){
+      super(ProductDetails);
+      this.instruction = ProductDetails.appliancesInstruction;
+      this.warrant = ProductDetails.appliancesWarranty
+      
+    }
+
+    getWarrant(){
+      return `<a href = "${this.warrant}" target="_blank">Warrant</a>`
+
+    }
+
+    getInstruct(){
+      return `<a href = "${this.instruction}" target="_blank">Instruction</a>`
+
+    
+  }
+
+  }
+
+  class Clothes extends Product{
+    size;
+
+    constructor(ProductDetails){
+      super(ProductDetails)
+      this.size = ProductDetails.sizeChartLink;
+    }
+
+    getsize(){
+      return `<a href = "${this.size}" target="_blank">Size Chart</a>`
+
+    }
+
   }
 
 
@@ -93,7 +145,10 @@ export const products = [
       "toaster",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type:'Appliances',
+    appliancesWarranty:'images/appliance-warranty.png',
+    appliancesInstruction:'images/appliance-instructions.png',
   },
   {
     id: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
@@ -702,10 +757,19 @@ export const products = [
     priceCents:1000,
   }
 ].map((ProductDetails)=>{
+  if(ProductDetails.type==='Appliances'){
+    return new Appliances(ProductDetails)
+  }
+  if(ProductDetails.type ==='clothing' ){
+    return new Clothes(ProductDetails)
+
+  }
+  
       return new Product(ProductDetails);
 
-})
+});
 
 
 
 
+  

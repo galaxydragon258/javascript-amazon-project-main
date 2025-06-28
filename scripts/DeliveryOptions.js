@@ -36,7 +36,7 @@
 
             let format = added.format('dddd');
 
-            if(format === 'Saturday'){
+            if(format === 'Saturday'|| format === 'Sunday'){
                 added = added.add(2,'days');
             }
             
