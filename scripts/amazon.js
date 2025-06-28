@@ -3,16 +3,14 @@ import{products}from "../data/products.js"
 import {renderChecout} from "../data/checkout/checkoutHader.js";
 import { amazonQuantiy } from "../data/checkout/checkoutHader.js";
 import {productss} from '../data/product-backend.js';
-let html = '';
+import {loadBackend} from "../data/product-backend.js";
 
+loadBackend(renderGrid); 
 
-
-
-
-export function renderGrid(){ 
-  console.log('RENDER GOOD')
-
-productss.forEach((product)=>{
+ export function renderGrid(){ 
+  let html = '';
+  
+  productss.forEach((product)=>{
      let accum = `<div class="product-container">
           <div class="product-image-container">
             <img class="product-image"

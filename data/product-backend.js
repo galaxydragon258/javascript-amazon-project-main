@@ -1,13 +1,11 @@
-import { renderGrid } from "../scripts/amazon.js";
 import { Dollors } from "../scripts/moenyConverte.js";
+import { renderGrid } from "../scripts/amazon.js";
 
 export let  productss = [];
 
-
-
+export function loadBackend(renderGrid){
 let xrl = new XMLHttpRequest;
 
- 
 
 xrl.addEventListener('load',()=>{
     productss = JSON.parse(xrl.response).
@@ -26,17 +24,12 @@ xrl.addEventListener('load',()=>{
     
 
     console.log('loaded from backend')
-      renderGrid();
+    
+    renderGrid();
 
-
-
-  
-        
 
     
 })
-
-
 
 
 
@@ -127,3 +120,4 @@ xrl.send();
 
   }
 
+}

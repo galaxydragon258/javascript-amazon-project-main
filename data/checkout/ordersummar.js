@@ -215,7 +215,7 @@ update();
 
   
   }
-  renderOrderedItems();
+ 
 
 
 

@@ -178,8 +178,7 @@
         
 };
 
-const cart = new Cart('Mark');
-cart.addtoCart('901eb2ca-386d-432e-82f0-6fb1ee7bf969');
+
 
 
 
