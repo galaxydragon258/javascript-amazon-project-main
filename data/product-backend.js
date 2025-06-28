@@ -1,16 +1,18 @@
 import { Dollors } from "../scripts/moenyConverte.js";
+import { products } from "./products.js";
 import { renderGrid } from "../scripts/amazon.js";
-
 export let  productss = [];
 
-export function loadBackend(renderGrid){
-let xrl = new XMLHttpRequest;
+export function loadFetch(fun){
+  console.log('function loaded')
+  const promise = fetch('https://supersimplebackend.dev/products').then((response)=>{
+    return response.json();
+  }).
+  then((ProductData)=>{
+    console.log('got the data')
 
-
-xrl.addEventListener('load',()=>{
-    productss = JSON.parse(xrl.response).
-            map((ProductDetails)=>{
-        if(ProductDetails.type==='Appliances'){
+    productss = ProductData.map((ProductDetails)=>{
+      if(ProductDetails.type==='Appliances'){
             return new Appliances(ProductDetails)
         }
         if(ProductDetails.type ==='clothing' ){
@@ -20,21 +22,27 @@ xrl.addEventListener('load',()=>{
         
             return new Product(ProductDetails);
 
-        });
-    
+      
+    })
+  })
 
-    console.log('loaded from backend')
+  return promise;
     
-    renderGrid();
-
-
-    
+}
+loadFetch().then(()=>{
+  renderGrid();
 })
 
 
 
-xrl.open('GET', 'https://supersimplebackend.dev/products')
-xrl.send();
+
+
+
+
+
+let xrl = new XMLHttpRequest;
+
+
 
 
 
@@ -120,4 +128,3 @@ xrl.send();
 
   }
 
-}
