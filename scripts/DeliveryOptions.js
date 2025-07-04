@@ -29,6 +29,7 @@
 
 
     export function calculateDeliveryDate(deliveryDate){
+             console.log('working')
         
             let today = dayjs();
 
@@ -36,9 +37,12 @@
 
             let format = added.format('dddd');
 
-            if(format === 'Saturday'|| format === 'Sunday'){
+            if(format === 'Saturday'){
                 added = added.add(2,'days');
+            }else if (format === 'Sunday'){
+                added = added.add(1,'days');
             }
+             
             
             return added.format("dddd,MMMM D");
             

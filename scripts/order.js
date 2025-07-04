@@ -1,34 +1,82 @@
 import { productss } from "../data/product-backend.js";
+import { Dollors } from "./moenyConverte.js";
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+import {calculateDeliveryDate} from "../../scripts/DeliveryOptions.js";
+import { products } from "../data/products.js";
 
 
-let html = '';
-const allOrders = JSON.parse(localStorage.getItem('order')) || [];
 
-    allOrders.forEach((orderItems)=>{
-        console.log(orderItems);
-        let productId = [];// id galing orderItem
-        let macher;
+    let html = '';
+    const allOrders = JSON.parse(localStorage.getItem('order')) || [];
 
+
+        allOrders.forEach((orderItems)=>{
+            console.log(orderItems);
+            let productId = [];// id galing orderItem
+            let macher = [];
+            let estimated =  [];
+            let estimate;
+            let format = [];
+            
         
+            
+            console.log(productId)
+            
+            
+            orderItems.products.forEach((product)=>{// getting id
+            productId.push({
+                    id: product.productId,
+                    quantity:product.quantity,
+                    delivery:product.estimatedDeliveryTime
+                    
 
-        
-       
-        orderItems.products.forEach((product)=>{// getting id
-           productId.push({
-                id: product.productId
-           });
+            });
+            estimated.push(
+                product.estimatedDeliveryTime
+            );
 
-        })//end
+            
+            })//end
+
+
+    
+
+
+        console.log(estimate)
+        console.log(format);
 
 
         productss.forEach((products)=>{// if match id get propert of the object
             productId.forEach((id)=>{
+                let added = dayjs(id.delivery);
+                const formatted= dayjs(id.delivery).format('dddd');
+                if(formatted === 'Saturday'){
+                added = added.add(2,'days'); 
+            }
+                else if (formatted === 'Sunday'){
+                added= added.add(1,'days');
+                }
+                const format = added.format('MMMM D');
                 if(products.id === id.id){
-                    macher = products;
+                    macher.push({
+                        image:products.image,
+                        name:products.name,
+                        quantity:id.quantity,
+                        delivery:format
+                    })
+                
                 }
     
-        })
+        })/// end
+
+
+
     });/// end
+
+    console.log(macher);
+
+
+
 
         
     html += `
@@ -42,16 +90,16 @@ const allOrders = JSON.parse(localStorage.getItem('order')) || [];
               </div>
               <div class="order-total">
                 <div class="order-header-label">Total:</div>
-                <div>$41.90</div>
+                <div>${Dollors(orderItems.totalCostCents)}</div>
               </div>
             </div>
 
             <div class="order-header-right-section">
               <div class="order-header-label">Order ID:</div>
-              <div>b6b6c212-d30e-4d4a-805d-90b52ce6b37d</div>
+              <div>${orderItems.id}</div>
             </div>
           </div>
-            ${orderDetails(productId,macher)}
+            ${orderDetails(macher)}
 
         </div>
     
@@ -61,32 +109,34 @@ const allOrders = JSON.parse(localStorage.getItem('order')) || [];
 
 
     
-})
+    })
     
     document.querySelector('.testing').innerHTML = html;
     
 
-    function orderDetails(productId,match){
+    function orderDetails(match){
 
         let html = ""
 
-        productId.forEach((items)=>{
+        
 
-            html += `
+            match.forEach((items)=>{
+
+                 html += `
                 <div class="order-details-grid">
                     <div class="product-image-container">
-                    <img src="${match.image}">
+                    <img src="${items.image}">
                     </div>  
 
                     <div class="product-details">
                     <div class="product-name">
-                        Intermediate Size Basketball
+                        ${items.name}
                     </div>
                     <div class="product-delivery-date">
-                        Arriving on: June 17
+                        Arriving on: ${items.delivery}
                     </div>
                     <div class="product-quantity">
-                        Quantity: 2
+                        Quantity: ${items.quantity}
                     </div>
                     <button class="buy-again-button button-primary">
                         <img class="buy-again-icon" src="images/icons/buy-again.png">
@@ -103,7 +153,11 @@ const allOrders = JSON.parse(localStorage.getItem('order')) || [];
                     </div>
                 </div>`;
 
-                });
+            });
+
+           
+
+               
           return html
 
     }
