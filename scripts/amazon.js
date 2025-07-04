@@ -1,4 +1,4 @@
-import {cart,SavedLocalStorage,update} from "../data/cart.js"
+import {cart,SavedLocalStorage} from "../data/cart.js"
 import{products}from "../data/products.js"
 import {renderChecout} from "../data/checkout/checkoutHader.js";
 import { amazonQuantiy } from "../data/checkout/checkoutHader.js";
@@ -141,8 +141,7 @@ forEach((buttons)=>{
       clearTimeout(ID);
       
     }
-    update();
-    SavedLocalStorage();
+  SavedLocalStorage();
   
    
       

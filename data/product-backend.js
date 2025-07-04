@@ -1,7 +1,10 @@
 import { Dollors } from "../scripts/moenyConverte.js";
 import { products } from "./products.js";
 import { renderGrid } from "../scripts/amazon.js";
-export let  productss = [];
+
+
+
+export let  productss =  JSON.parse(localStorage.getItem('products'));
 
 export function loadFetch(fun){
   console.log('function loaded')
@@ -24,8 +27,12 @@ export function loadFetch(fun){
 
       
     })
+
+    localStorage.setItem('products',JSON.stringify(productss));
   })
 
+
+  
   return promise;
     
 }

@@ -1,4 +1,3 @@
-
 import { cart } from "../cart.js";
 export function renderChecout(){
 
@@ -34,5 +33,17 @@ export function amazonQuantiy(){
 
 } 
 
+export function updates(){
+    let quanti = 0;
+    Responsse.products.forEach((items)=>{
+        quanti += items.quantity;
+     
+        
+    })
 
+    document.querySelector('.quantitys').innerHTML = quanti
+    
+
+
+}
 
