@@ -4,33 +4,37 @@ import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import {calculateDeliveryDate} from "../../scripts/DeliveryOptions.js";
 import { products } from "../data/products.js";
 
+        
+
+        const allOrders = JSON.parse(localStorage.getItem('order')) || [];
 
 
-    let html = '';
-    const allOrders = JSON.parse(localStorage.getItem('order')) || [];
+        let html = '';
+        let order = [];
+        export let quantitys = 0;
 
 
         allOrders.forEach((orderItems)=>{
             console.log(orderItems);
             let productId = [];// id galing orderItem
-            let macher = [];
             let estimated =  [];
-            let estimate;
-            let format = [];
-            
-        
-            
-            console.log(productId)
-            
+            let macher = [];
+            let format = [];    
+
+           
             
             orderItems.products.forEach((product)=>{// getting id
             productId.push({
                     id: product.productId,
                     quantity:product.quantity,
-                    delivery:product.estimatedDeliveryTime
+                    delivery:product.estimatedDeliveryTime,
+                    productId:product.productId,
+                    order:orderItems.id
                     
 
             });
+            quantitys += product.quantity;
+
             estimated.push(
                 product.estimatedDeliveryTime
             );
@@ -38,12 +42,15 @@ import { products } from "../data/products.js";
             
             })//end
 
+            let placorder = dayjs(orderItems.orderTime).format('MMMM D')
+            console.log(placorder)
+
 
     
 
 
-        console.log(estimate)
-        console.log(format);
+        console.log(macher);
+        document.querySelector('.quanti').innerHTML = quantitys;
 
 
         productss.forEach((products)=>{// if match id get propert of the object
@@ -62,7 +69,10 @@ import { products } from "../data/products.js";
                         image:products.image,
                         name:products.name,
                         quantity:id.quantity,
-                        delivery:format
+                        delivery:format,
+                        id:products.id,
+                        productId:id.productId,
+                        order:id.order
                     })
                 
                 }
@@ -72,6 +82,8 @@ import { products } from "../data/products.js";
 
 
     });/// end
+
+
 
     console.log(macher);
 
@@ -86,7 +98,7 @@ import { products } from "../data/products.js";
             <div class="order-header-left-section">
               <div class="order-date">
                 <div class="order-header-label">Order Placed:</div>
-                <div>June 10</div>
+                <div>${placorder}</div>
               </div>
               <div class="order-total">
                 <div class="order-header-label">Total:</div>
@@ -110,6 +122,7 @@ import { products } from "../data/products.js";
 
     
     })
+
     
     document.querySelector('.testing').innerHTML = html;
     
@@ -117,8 +130,6 @@ import { products } from "../data/products.js";
     function orderDetails(match){
 
         let html = ""
-
-        
 
             match.forEach((items)=>{
 
@@ -145,7 +156,7 @@ import { products } from "../data/products.js";
                     </div>
 
                     <div class="product-actions">
-                    <a href="tracking.html">
+                    <a href="tracking.html?ProductId=${items.productId}$OrderId=${items.order}">
                         <button class="track-package-button button-secondary">
                         Track package
                         </button>
@@ -161,6 +172,5 @@ import { products } from "../data/products.js";
           return html
 
     }
-
-
+    
     
