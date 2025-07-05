@@ -1,8 +1,6 @@
 import { cart, fun, DeliverIdMatcher, SavedLocalStorage} from "../cart.js";
 import { Dollors } from "../../scripts/moenyConverte.js";
-import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-import {calculateDeliveryDate} from "../../scripts/DeliveryOptions.js";
-import { renderOrderedItems } from "./ordersummar.js";
+
 
  let Responsse = JSON.parse(localStorage.getItem('order')) || [];
 

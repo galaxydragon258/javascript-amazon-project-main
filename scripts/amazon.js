@@ -1,9 +1,6 @@
 import {cart,SavedLocalStorage} from "../data/cart.js"
-import{products}from "../data/products.js"
-import {renderChecout} from "../data/checkout/checkoutHader.js";
 import { amazonQuantiy } from "../data/checkout/checkoutHader.js";
 import {productss} from '../data/product-backend.js';
-import {loadFetch} from "../data/product-backend.js";
 
  export function renderGrid(){ 
   let html = '';

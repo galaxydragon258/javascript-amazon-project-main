@@ -2,7 +2,7 @@ import { cart, Delete, SavedLocalStorage, updateQuantity, updateDeliveryTime, fu
 import { DeliverOption, calculateDeliveryDate } from "../../scripts/DeliveryOptions.js";
 import { PaymentSummary } from "./PaymentSum.js";
 import { renderChecout } from "./checkoutHader.js";
-import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+
 
 export function renderOrderedItems() {
   let html = '';
