@@ -15,7 +15,7 @@ let headerHTML ="";
     headerHTML=`
       <div class="checkout-header-middle-section">
           Checkout (<a class="return-to-home-link test" 
-            href="amazon.html">${totalQuantity} items</a>)
+            href="index.html">${totalQuantity} items</a>)
         </div>`;
 
         document.querySelector('.test').innerHTML = headerHTML;
